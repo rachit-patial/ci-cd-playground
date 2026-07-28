@@ -1,9 +1,9 @@
 use axum::{
+    Json, Router,
     extract::Query,
     http::{HeaderMap, StatusCode},
     response::IntoResponse,
     routing::{get, post},
-    Json, Router,
 };
 use serde::{Deserialize, Serialize};
 use std::net::SocketAddr;
@@ -48,7 +48,7 @@ async fn main() {
 async fn root_handler() -> impl IntoResponse {
     let mut headers = HeaderMap::new();
     headers.insert("Content-Type", "text/html; charset=utf-8".parse().unwrap());
-    
+
     (
         StatusCode::OK,
         headers,
