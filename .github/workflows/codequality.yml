@@ -30,6 +30,9 @@ jobs:
 
       - name: Run Clippy
         run: cargo clippy --all-targets --all-features
+
+      - name: Build
+        run: cargo build --verbose
       
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
