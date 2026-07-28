@@ -9,7 +9,7 @@ COPY src ./src
 RUN cargo build --release
 
 #Runtime Stage
-FROM debian:bookwork-slim
+FROM debian:bookworm-slim
 
 COPY --from=builder /app/target/release/hola /usr/loca/bin/hola
 
