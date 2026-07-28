@@ -3,7 +3,7 @@ name: DAST testing
 on:
   workflow_dispatch:
 
-permission:
+permissions:
   contents: read
   packages: read
 
