@@ -13,4 +13,4 @@ FROM debian:bookworm-slim
 
 COPY --from=builder /app/target/release/hola /usr/loca/bin/hola
 
-CMD ["hola"]
+CMD ["ci-cd-playground"]
