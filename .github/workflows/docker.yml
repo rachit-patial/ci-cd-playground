@@ -31,22 +31,32 @@ jobs:
         run: |
           docker build -t ghcr.io/${{ github.repository }}:latest .
       
-      - name: Scan Docker image
+      - name: Generate Trivy Report
         uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: ghcr.io/${{ github.repository }}:latest
           format: sarif
           output: trivy-results.sarif
-          exit-code: 1
-          ignore-unfixed: true
+          exit-code: 0
+          ignore-unfixed: false
           vuln-type: os,library
-          severity: CRITICAL,HIGH
+          severity: UNKNOWN,LOW,MEDIUM,CRITICAL,HIGH
 
       - name: Upload sarif report
         if: always()
         uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: trivy-results.sarif
+
+      - name: Docker Image Scan
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: ghcr.io/%{{ github.repository }}:latest
+          format: table
+          exit-code 1
+          ignore-unfixed: true
+          vuln-type: os,library
+          severity: HIGH,CRITICAL
 
       - name: Push image
         run: |
