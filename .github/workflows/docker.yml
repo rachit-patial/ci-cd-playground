@@ -30,6 +30,16 @@ jobs:
         run: |
           docker build -t ghcr.io/${{ github.repository }}:latest .
       
+      - name: Scan Docker image
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          image-ref: ghcr.io/${{ github.repository }}:latest
+          format: table
+          exit-code: 1
+          ignore-unfixed: true
+          vuln-type: os,library
+          severity: CRITICAL,HIGH
+          
       - name: Push image
         run: |
           docker push ghcr.io/${{ github.repository }}:latest
