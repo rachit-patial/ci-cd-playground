@@ -37,7 +37,7 @@ async fn main() {
         .route("/api/search", get(search_handler))
         .route("/api/login", post(login_handler));
 
-    let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
+    let addr = SocketAddr::from(([127, 0, 0, 1], 8080));
     println!("Server running on http://{}", addr);
 
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
