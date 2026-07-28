@@ -11,6 +11,6 @@ RUN cargo build --release
 #Runtime Stage
 FROM debian:bookworm-slim
 
-COPY --from=builder /app/target/release/hola /usr/loca/bin/hola
+COPY --from=builder /app/target/release/hola /usr/local/bin/hola
 
-CMD ["ci-cd-playground"]
+CMD ["hola"]
