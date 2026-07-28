@@ -22,7 +22,7 @@ jobs:
       
       - name: Pull image
         run: |
-          docker pull ghcr.io/${{ github.repository }}::latest
+          docker pull ghcr.io/${{ github.repository }}:latest
       
       - name: Run Container
         run: |
